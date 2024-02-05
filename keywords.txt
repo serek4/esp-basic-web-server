@@ -1,0 +1,32 @@
+#######################################
+# Syntax Coloring Map For
+# esp basic web server
+#######################################
+
+#######################################
+# Data Types (KEYWORD1)
+#######################################
+
+BasicWebServer   KEYWORD1
+HttpHandler   KEYWORD1
+Config   KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+addHttpHandler  KEYWORD2
+setup  KEYWORD2
+begin  KEYWORD2
+setConfig  KEYWORD2
+getConfig  KEYWORD2
+
+#######################################
+# (KEYWORD3)
+#######################################
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
