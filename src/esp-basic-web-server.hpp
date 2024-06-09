@@ -3,6 +3,7 @@
 #include <ESPAsyncWebServer.h>
 #include <SPIFFSEditor.h>
 #include <esp-basic-fs.hpp>
+#include <list>
 
 // #define BASIC_WEB_SERVER_DEBUG
 // debug printing macros
@@ -56,7 +57,7 @@ class BasicWebServer {
   private:
 	String _user;
 	String _pass;
-	std::vector<HttpHandler> _httpHandlers;
+	std::list<HttpHandler> _httpHandlers;
 };
 
 extern AsyncWebServer asyncWebServer;
