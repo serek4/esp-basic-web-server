@@ -18,6 +18,7 @@ Config   KEYWORD1
 addHttpHandler  KEYWORD2
 setup  KEYWORD2
 begin  KEYWORD2
+end  KEYWORD2
 setConfig  KEYWORD2
 getConfig  KEYWORD2
 

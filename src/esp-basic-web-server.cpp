@@ -48,6 +48,10 @@ void BasicWebServer::begin() {
 	asyncWebServer.begin();
 	BASIC_WEB_SERVER_PRINTLN("web server started");
 }
+void BasicWebServer::end() {
+	asyncWebServer.end();
+	BASIC_WEB_SERVER_PRINTLN("web server stopped");
+}
 void BasicWebServer::addHttpHandler(const char* uri, const ArRequestHandlerFunction& handler) {
 	HttpHandler newHandler;
 	newHandler.uri = uri;

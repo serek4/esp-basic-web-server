@@ -14,6 +14,7 @@ void setup() {
 	webServer.addHttpHandler("/reconnectWiFi", reconnectWiFiHandler);
 	webServer.setup();
 	wifi.onGotIP(handleWiFiGotIP);
+	wifi.onDisconnected(handleWiFiDisconnect);
 	wifi.setup();
 	if (wifi.waitForConnection() == BasicWiFi::wifi_got_ip) {
 	}
@@ -26,6 +27,9 @@ void loop() {
 
 void handleWiFiGotIP(GOT_IP_HANDLER_ARGS) {
 	webServer.begin();
+}
+void handleWiFiDisconnect(DISCONNECTED_HANDLER_ARGS) {
+	webServer.end();
 }
 void reconnectWiFiHandler(AsyncWebServerRequest* request) {
 	AsyncWebServerResponse* response = request->beginResponse(200, "text/plain", "reconnect WiFi command sent");

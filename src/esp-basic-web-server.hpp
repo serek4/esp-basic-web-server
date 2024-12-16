@@ -50,6 +50,7 @@ class BasicWebServer {
 	void addHttpHandler(const char* uri, WebRequestMethodComposite method, const ArRequestHandlerFunction& handler);
 	void setup();
 	void begin();
+	void end();
 	void setConfig(const Config& config);
 	void getConfig(Config& config);
 	Config getConfig();
