@@ -2,13 +2,12 @@
 
 AsyncWebServer asyncWebServer(HTTP_PORT);
 
-BasicWebServer::BasicWebServer()
-    : _user(HTTP_USER)
-    , _pass(HTTP_PASS) {
-}
 BasicWebServer::BasicWebServer(const char* user, const char* pass)
     : _user(user)
     , _pass(pass) {
+}
+BasicWebServer::BasicWebServer()
+    : BasicWebServer::BasicWebServer(HTTP_USER, HTTP_PASS) {
 }
 
 void BasicWebServer::setup() {
@@ -22,26 +21,26 @@ void BasicWebServer::setup() {
 		asyncWebServer.on("/", HTTP_GET, [](AsyncWebServerRequest* request) {
 			request->redirect("/edit");
 		});
-		// 404 not found handler
-		asyncWebServer.onNotFound([](AsyncWebServerRequest* request) {
-			String message = "File Not Found\n\n";
-			message += "\nURI: ";
-			message += request->url();
-			message += "\nMethod: ";
-			message += request->methodToString();
-			message += "\nArguments: ";
-			message += request->args();
-			message += "\n";
-			for (uint8_t i = 0; i < request->args(); i++) {
-				message += " " + request->argName(i);
-				message += ": " + request->arg(i) + "\n";
-			}
-			message += "\n";
-			request->send(404, "text/plain", message);
-		});
-		for (auto& handler : _httpHandlers) {
-			asyncWebServer.on(handler.uri, handler.method, handler.handler);
+	}
+	// 404 not found handler
+	asyncWebServer.onNotFound([](AsyncWebServerRequest* request) {
+		String message = "File Not Found\n\n";
+		message += "\nURI: ";
+		message += request->url();
+		message += "\nMethod: ";
+		message += request->methodToString();
+		message += "\nArguments: ";
+		message += request->args();
+		message += "\n";
+		for (uint8_t i = 0; i < request->args(); i++) {
+			message += " " + request->argName(i);
+			message += ": " + request->arg(i) + "\n";
 		}
+		message += "\n";
+		request->send(404, "text/plain", message);
+	});
+	for (auto& handler : _httpHandlers) {
+		asyncWebServer.on(handler.uri, handler.method, handler.handler);
 	}
 }
 void BasicWebServer::begin() {
