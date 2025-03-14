@@ -15,6 +15,8 @@ void BasicWebServer::setup() {
 		BASIC_FS_PRINTLN("file system not mounted yet, mounting");
 		filesystem.setup();
 	}
+	// add default headers
+	DefaultHeaders::Instance().addHeader("Access-Control-Allow-Origin", "*");
 	if (filesystem._fsStarted) {
 		asyncWebServer.addHandler(new SPIFFSEditor(SPIFFS_EDITOR_ARGS));
 		// redirect to file editor
